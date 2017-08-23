@@ -1,0 +1,61 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<prism:PrismApplication
+    xmlns="http://xamarin.com/schemas/2014/forms"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    xmlns:prism="clr-namespace:Prism.Unity;assembly=Prism.Unity.Forms"
+    x:Class="PrismApp.Shared.App">
+    <prism:PrismApplication.Resources>
+        <ResourceDictionary>
+            <!-- BLACK BACKGROUND -->
+            <Color x:Key="BlackBackgroundColor">#000000</Color>
+            <Color x:Key="BrandColor">#FE4614</Color>
+           
+            <!-- BOTAO LOGIN ATIVO -->
+            <Style
+                x:Key="btnActiveLogon"
+                TargetType="Button">
+                <Setter
+                    Property="BackgroundColor"
+                    Value="#FE4614" />
+                <Setter
+                    Property="BorderColor"
+                    Value="#FE4614" />
+                <Setter
+                    Property="BorderRadius"
+                    Value="20" />
+                <Setter
+                    Property="TextColor"
+                    Value="#FFFFFF" />
+                <Setter
+                    Property="FontAttributes"
+                    Value="Bold" />
+                <Setter
+                    Property="Margin"
+                    Value="0,40" />
+            </Style>
+            <!-- BOTAO LOGIN INATIVO -->
+             <Style
+                x:Key="btnInactiveLogon"
+                TargetType="Button">
+                <Setter
+                    Property="BackgroundColor"
+                    Value="#CCCCCC" />
+                <Setter
+                    Property="BorderColor"
+                    Value="#CCCCCC" />
+                <Setter
+                    Property="BorderRadius"
+                    Value="20" />
+                <Setter
+                    Property="TextColor"
+                    Value="#FFFFFF" />
+                <Setter
+                    Property="FontAttributes"
+                    Value="Bold" />
+                <Setter
+                    Property="Margin"
+                    Value="0,40" />
+            </Style>
+        </ResourceDictionary>
+    </prism:PrismApplication.Resources>
+</prism:PrismApplication>

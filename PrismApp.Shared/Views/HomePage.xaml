@@ -1,0 +1,113 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ContentPage
+    xmlns="http://xamarin.com/schemas/2014/forms"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    xmlns:effects="clr-namespace:PrismApp.Shared"
+    xmlns:controls="clr-namespace:ImageCircle.Forms.Plugin.Abstractions;assembly=ImageCircle.Forms.Plugin.Abstractions"
+    xmlns:b="clr-namespace:Prism.Behaviors;assembly=Prism.Forms"
+    Title="Agenda"
+    x:Class="PrismApp.Shared.Views.HomePage">
+    <ContentPage.Content>
+        <Grid
+            VerticalOptions="FillAndExpand"
+            HorizontalOptions="FillAndExpand"
+            Padding="20">
+            <Grid.RowDefinitions>
+                <RowDefinition
+                    Height="1*" />
+                <RowDefinition
+                    Height="1*" />
+                <RowDefinition
+                    Height="8*" />
+            </Grid.RowDefinitions>
+            <Label
+                Grid.Row="0"
+                HorizontalOptions="Center"
+                FontAttributes="Bold"
+                FontSize="33"
+                TextColor="{StaticResource BrandColor}"
+                Text="Agenda" />
+            <Label
+                Grid.Row="1"
+                Margin="0,-20"
+                HorizontalOptions="Center"
+                FontSize="Small"
+                TextColor="#555"
+                Text="Transmissões gratuitas e ao vivo" />
+            <ListView
+                x:Name="lstTalks"
+                GroupDisplayBinding="{Binding Key}"
+                ItemsSource="{Binding Talks}"
+                HasUnevenRows="true"
+                VerticalOptions="Start"
+                Margin="0,-30"
+                IsGroupingEnabled="true"
+                SeparatorColor="Transparent"
+                SeparatorVisibility="None"
+                Grid.Row="2">
+                <ListView.Effects>
+                    <effects:EmptylessListViewEffect />
+                </ListView.Effects>
+                <ListView.Behaviors>
+                    <b:EventToCommandBehavior
+                        EventName="ItemTapped"
+                        Command="{Binding ItemSelectedCmd}"
+                        EventArgsParameterPath="Item" />
+                </ListView.Behaviors>
+                <ListView.GroupHeaderTemplate>
+                    <DataTemplate>
+                        <ViewCell>
+                            <Label
+                                Text="{Binding Key}"
+                                Margin="10"
+                                FontSize="Large"
+                                TextColor="Black"
+                                FontAttributes="Bold" />
+                        </ViewCell>
+                    </DataTemplate>
+                </ListView.GroupHeaderTemplate>
+                <ListView.ItemTemplate>
+                    <DataTemplate>
+                        <ViewCell>
+                            <Grid
+                                Padding="10">
+                                <Grid.ColumnDefinitions>
+                                    <ColumnDefinition
+                                        Width="Auto" />
+                                    <ColumnDefinition
+                                        Width="7*" />
+                                </Grid.ColumnDefinitions>
+                                <Grid.RowDefinitions>
+                                    <RowDefinition
+                                        Height="Auto" />
+                                </Grid.RowDefinitions>
+                                <controls:CircleImage
+                                    BorderColor="{StaticResource BrandColor}"
+                                    BorderThickness="1"
+                                    Grid.Row="0"
+                                    Grid.Column="0"
+                                    HeightRequest="70"
+                                    WidthRequest="70"
+                                    Source="{Binding Speaker.Photo}" />
+                                <StackLayout
+                                    VerticalOptions="CenterAndExpand"
+                                    Grid.Row="0"
+                                    Grid.Column="1">
+                                    <Label
+                                        Text="{Binding Title}"
+                                        FontSize="13"
+                                        TextColor="#00000" />
+                                    <Label
+                                        Text="{Binding Speaker.Name_Assignment}"
+                                        FontSize="10"
+                                        TextColor="{StaticResource BrandColor}"
+                                        VerticalOptions="Start" />
+                                </StackLayout>
+                            </Grid>
+                        </ViewCell>
+                    </DataTemplate>
+                </ListView.ItemTemplate>
+            </ListView>
+        </Grid>
+    </ContentPage.Content>
+</ContentPage>

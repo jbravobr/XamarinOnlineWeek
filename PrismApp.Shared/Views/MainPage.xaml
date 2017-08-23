@@ -1,0 +1,101 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ContentPage
+    xmlns="http://xamarin.com/schemas/2014/forms"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    xmlns:effects="clr-namespace:PrismApp.Shared"
+    BackgroundColor="{StaticResource BlackBackgroundColor}"
+    x:Class="PrismApp.Shared.Views.MainPage">
+    <ContentPage.Content>
+        <Grid
+            RowSpacing="5">
+            <Grid.RowDefinitions>
+                <RowDefinition
+                    Height="6*" />
+                <RowDefinition
+                    Height="4*" />
+                <RowDefinition
+                    Height="Auto" />
+            </Grid.RowDefinitions>
+            <!-- BACKGROUND IMAGE -->
+            <Image
+                Grid.RowSpan="3"
+                Opacity="0.3"
+                Source="bg01.jpg"
+                Aspect="AspectFill" />
+            <!-- TÍTULO -->
+            <Label
+                Margin="16,120"
+                Grid.Row="0">
+                <Label.FormattedText>
+                    <FormattedString>
+                        <Span
+                            Text="Xamarin Online Week"
+                            FontSize="30"
+                            FontAttributes="Bold"
+                            ForegroundColor="White" />
+                        <Span
+                            Text=" '17"
+                            FontAttributes="Bold"
+                            FontSize="30"
+                            ForegroundColor="#FE4614">
+                        </Span>
+                    </FormattedString>
+                </Label.FormattedText>
+            </Label>
+            <!-- USUARIO E SENHA -->
+            <StackLayout
+                Spacing="50"
+                Padding="20"
+                Grid.Row="1">
+                <StackLayout>
+                    <!-- USUARIO -->
+                    <Entry
+                        Placeholder="Digite o seu usuário"
+                        TextColor="#FFFFFF"
+                        Text="{Binding Username}">
+                        <Entry.Effects>
+                            <effects:BorderlessEntryEffect />
+                        </Entry.Effects>
+                    </Entry>
+                    <BoxView
+                        Color="#FFFFFF"
+                        HeightRequest="1" />
+                </StackLayout>
+                <StackLayout>
+                    <!-- SENHA -->
+                    <Entry
+                        Placeholder="Digite a sua senha"
+                        IsPassword="true"
+                        TextColor="#FFFFFF"
+                        Text="{Binding Password}">
+                        <Entry.Effects>
+                            <effects:BorderlessEntryEffect />
+                        </Entry.Effects>
+                    </Entry>
+                    <BoxView
+                        Color="#FFFFFF"
+                        HeightRequest="1" />
+                </StackLayout>
+            </StackLayout>
+            <!-- BOTAO ENTRAR -->
+            <Button
+                Grid.Row="2"
+                Text="ENTRAR"
+                HorizontalOptions="CenterAndExpand"
+                WidthRequest="260"
+                Style="{StaticResource btnInactiveLogon}"
+                Command="{Binding LogonCmd}">
+                <Button.Font.Triggers>
+                    <Trigger
+                        TargetType="Button"
+                        Property="IsEnabled"
+                        Value="True">
+                        <Setter
+                            Property="Style"
+                            Value="{StaticResource btnActiveLogon}" />
+                    </Trigger>
+                </Button.Font.Triggers>
+            </Button>
+        </Grid>
+    </ContentPage.Content>
+</ContentPage>

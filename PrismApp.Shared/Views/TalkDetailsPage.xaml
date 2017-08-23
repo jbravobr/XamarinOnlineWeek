@@ -1,0 +1,107 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ContentPage
+    xmlns="http://xamarin.com/schemas/2014/forms"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    Title="{Binding Talk.Title}"
+    xmlns:controls="clr-namespace:ImageCircle.Forms.Plugin.Abstractions;assembly=ImageCircle.Forms.Plugin.Abstractions"
+    x:Class="PrismApp.Shared.Views.TalkDetailsPage">
+    <ContentPage.Content>
+        <Grid
+            VerticalOptions="FillAndExpand"
+            HorizontalOptions="FillAndExpand"
+            RowSpacing="0"
+            ColumnSpacing="0"
+            Padding="0">
+            <Grid.RowDefinitions>
+                <RowDefinition
+                    Height="4*" />
+                <RowDefinition
+                    Height="1*" />
+                <RowDefinition
+                    Height="5*" />
+            </Grid.RowDefinitions>
+            <!-- Painel imagem, título e nome -->
+            <Grid
+                BackgroundColor="#000000"
+                Grid.Row="0">
+                <Image
+                    HorizontalOptions="FillAndExpand"
+                    VerticalOptions="StartAndExpand"
+                    BackgroundColor="#000000"
+                    Opacity="0.4"
+                    Aspect="AspectFill"
+                    Source="bg01blurred.jpg" />
+                <StackLayout
+                    Margin="0,24"
+                    VerticalOptions="StartAndExpand">
+                    <controls:CircleImage
+                        HorizontalOptions="Center"
+                        BorderColor="{StaticResource BrandColor}"
+                        BorderThickness="3"
+                        Aspect="AspectFit"
+                        HeightRequest="110"
+                        WidthRequest="110"
+                        Source="{Binding Talk.Speaker.Photo}" />
+                    <Label
+                        Text="{Binding Talk.Title}"
+                        FontFamily="MankSans-Medium.ttf"
+                        TextColor="#FFFFFF"
+                        Margin="20,10"
+                        HorizontalTextAlignment="Center"
+                        FontSize="16"
+                        FontAttributes="Bold" />
+                    <Label
+                        Text="{Binding Talk.Speaker.FullName}"
+                        HorizontalTextAlignment="Center"
+                        FontFamily="MankSans-Medium.ttf"
+                        FontSize="Micro"
+                        TextColor="#FFFFFF"
+                        VerticalOptions="Start" />
+                </StackLayout>
+            </Grid>
+            <!-- Painel horário -->
+            <StackLayout
+                Grid.Row="1"
+                Spacing="0"
+                Orientation="Horizontal"
+                VerticalOptions="StartAndExpand"
+                BackgroundColor="#eeeeee">
+                <Image
+                    Source="calendar.png"
+                    Margin="20"
+                    HorizontalOptions="Start"
+                    HeightRequest="30"
+                    WidthRequest="30"
+                    Aspect="AspectFit" />
+                <Label
+                    Text="{Binding Talk.FormattedDate}"
+                    Margin="-9,23"
+                    FontFamily="MankSans-Medium.ttf"
+                    FontSize="Small"
+                    TextColor="#00000"
+                    FontAttributes="Bold" />
+            </StackLayout>
+            <!-- Painel descrição -->
+            <StackLayout
+                BackgroundColor="#eeeeee"
+                VerticalOptions="FillAndExpand"
+                HorizontalOptions="FillAndExpand"
+                Grid.Row="2">
+                <Image
+                    Margin="0,-1"
+                    Source="about.png"
+                    HorizontalOptions="Center"
+                    HeightRequest="60"
+                    WidthRequest="60"
+                    Aspect="AspectFit" />
+                <Label
+                    Margin="10,15"
+                    FontFamily="MankSans-Medium.ttf"
+                    FontSize="Medium"
+                    VerticalOptions="Start"
+                    HorizontalTextAlignment="Center"
+                    Text="{Binding Talk.Description}" />
+            </StackLayout>
+        </Grid>
+    </ContentPage.Content>
+</ContentPage>
