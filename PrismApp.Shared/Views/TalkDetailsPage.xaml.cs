@@ -9,6 +9,7 @@ namespace PrismApp.Shared.Views
 	{
 		public TalkDetailsPage()
 		{
+			NavigationPage.SetBackButtonTitle(this, "");
 			InitializeComponent();
 		}
 	}

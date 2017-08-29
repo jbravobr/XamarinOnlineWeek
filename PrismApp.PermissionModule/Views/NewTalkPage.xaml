@@ -1,0 +1,103 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ContentPage
+    xmlns="http://xamarin.com/schemas/2014/forms"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    BackgroundColor="#f7f7f7"
+    x:Class="PrismApp.PermissionModule.Views.NewTalkPage">
+    <ContentPage.Content>
+        <ScrollView>
+            <Grid
+                Padding="20"
+                RowSpacing="30"
+                VerticalOptions="FillAndExpand"
+                HorizontalOptions="FillAndExpand">
+                <Grid.RowDefinitions>
+                    <RowDefinition
+                        Height="150" />
+                    <RowDefinition
+                        Height="30" />
+                    <RowDefinition
+                        Height="30" />
+                    <RowDefinition
+                        Height="10" />
+                    <RowDefinition
+                        Height="*" />
+                    <RowDefinition
+                        Height="40" />
+                </Grid.RowDefinitions>
+                <Image
+                    Grid.Row="0"
+                    Source="{Binding ImgSource}"
+                    Aspect="AspectFit">
+                    <Image.GestureRecognizers>
+                        <TapGestureRecognizer
+                            Command="{Binding ImageSelectCmd}" />
+                    </Image.GestureRecognizers>
+                </Image>
+                <StackLayout
+                    Grid.Row="1"
+                    Spacing="20"
+                    Orientation="Horizontal">
+                    <Label
+                        Text="Palestrante"
+                        FontSize="Small"
+                        TextColor="Black" />
+                    <Entry
+                        VerticalOptions="Start"
+                        Text="{Binding SpeakerName}"
+                        HorizontalOptions="FillAndExpand"
+                        Placeholder="Digite o nome do palestrante"
+                        FontSize="Small"
+                        TextColor="Black"
+                        PlaceholderColor="Silver" />
+                </StackLayout>
+                <StackLayout
+                    Grid.Row="2"
+                    Spacing="20"
+                    Orientation="Horizontal">
+                    <Label
+                        Text="Palestra"
+                        FontSize="Small"
+                        TextColor="Black"
+                        Margin="0,0,20,0" />
+                    <Entry
+                        VerticalOptions="Start"
+                        HorizontalOptions="FillAndExpand"
+                        Placeholder="Digite o título da palestra"
+                        Text="{Binding TalkTitle}"
+                        FontSize="Small"
+                        TextColor="Black"
+                        PlaceholderColor="Silver" />
+                </StackLayout>
+                <StackLayout
+                    Grid.Row="3">
+                    <Label
+                        Text="Descrição"
+                        FontSize="Small" />
+                </StackLayout>
+                <BoxView
+                    Grid.Row="4"
+                    Color="Red" />
+                <Editor
+                    Grid.Row="4"
+                    Text="{Binding TalkDescription}"
+                    Margin="1"
+                    FontSize="Small"
+                    TextColor="Black" />
+                <Button
+                    HorizontalOptions="CenterAndExpand"
+                    WidthRequest="250"
+                    Command="{Binding SaveCmd}"
+                    Text="SALVAR"
+                    FontSize="Medium"
+                    FontAttributes="Bold"
+                    TextColor="White"
+                    BackgroundColor="#ffa500"
+                    BorderColor="#ffa500"
+                    BorderWidth="1"
+                    BorderRadius="20"
+                    Grid.Row="5" />
+            </Grid>
+        </ScrollView>
+    </ContentPage.Content>
+</ContentPage>

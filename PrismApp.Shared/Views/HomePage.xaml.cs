@@ -8,7 +8,7 @@ namespace PrismApp.Shared.Views
 		{
 			InitializeComponent();
 
-			NavigationPage.SetHasNavigationBar(this, false);
+			//NavigationPage.SetHasNavigationBar(this, false);
 
 			lstTalks.ItemSelected += (sender, e) => 
 			{

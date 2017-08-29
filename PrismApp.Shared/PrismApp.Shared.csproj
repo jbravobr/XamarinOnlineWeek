@@ -43,7 +43,11 @@
 		<Folder Include="Effects\" />
 		<Folder Include="Controls\" />
 		<Folder Include="Controls\Segment Control\" />
-		<Folder Include="Models\" />
 		<Folder Include="Helpers\" />
+		<Folder Include="Events\" />
 	</ItemGroup>
+	<ItemGroup>
+	  <ProjectReference Include="..\PrismApp.PermissionModule\PrismApp.PermissionModule.csproj" />
+	</ItemGroup>
+	<Import Project="..\PrismApp.Domain\PrismApp.Domain.projitems" Label="Shared" Condition="Exists('..\PrismApp.Domain\PrismApp.Domain.projitems')" />
 </Project>

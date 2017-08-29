@@ -1,5 +1,5 @@
 ﻿using System;
-namespace PrismApp.Shared
+namespace PrismApp.Domain
 {
 	public class Talk
 	{

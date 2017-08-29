@@ -2,14 +2,25 @@
 using Prism.Mvvm;
 using Prism.Navigation;
 using Prism.Services;
+using Prism.Modularity;
+using Prism.AppModel;
 
 using System;
 using System.Threading.Tasks;
+using System.Collections.Generic;
+using System.Linq;
+using Prism.Events;
 
 namespace PrismApp.Shared.ViewModels
 {
-	public class MainPageViewModel : BindableBase
+	public class MainPageViewModel : BindableBase, IApplicationStore
 	{
+		/// <summary>
+		/// Gets the properties.
+		/// </summary>
+		/// <value>The properties.</value>
+		public IDictionary<string, object> Properties => Xamarin.Forms.Application.Current.Properties;
+
 		/// <summary>
 		/// The username.
 		/// </summary>
@@ -49,6 +60,12 @@ namespace PrismApp.Shared.ViewModels
 		IPageDialogService _pageDialogService { get; }
 
 		/// <summary>
+		/// Gets the module manager.
+		/// </summary>
+		/// <value>The module manager.</value>
+		IModuleManager _moduleManager { get; }
+
+		/// <summary>
 		/// Logins the command can execute.
 		/// </summary>
 		/// <returns><c>true</c>, if command can execute was logined, <c>false</c> otherwise.</returns>
@@ -61,10 +78,15 @@ namespace PrismApp.Shared.ViewModels
 		/// <param name="navigationService">Navigation service.</param>
 		/// <param name="pageDialogService">Page dialog service.</param>
 		public MainPageViewModel(INavigationService navigationService,
-								 IPageDialogService pageDialogService)
+								 IPageDialogService pageDialogService,
+		                         IModuleManager moduleManager)
 		{
 			_navigationService = navigationService;
 			_pageDialogService = pageDialogService;
+			_moduleManager = moduleManager;
+
+			if (Properties != null && Properties.Any())
+				Properties.Clear();
 
 			// CONTROLANDO EXECUÇÃO ATRAVES DE UM MÉTODO E POR OBSERVAÇÃO DE PROPRIEDADES
 			LogonCmd = new DelegateCommand(Logon, LoginCommandCanExecute)
@@ -91,13 +113,23 @@ namespace PrismApp.Shared.ViewModels
 		{
 			try
 			{
-				if (Username == "admin" && Password == "admin")
+				if (Username == "admin" && Password == "admin") // ACESSO COM ADMIN LOGO IREI CARREGAR O MÓDULO DE PERMISSAO
 				{
+					LoadPermissionModule();
+
 					// NAVEGAÇÃO ABSOLUTA POR URI
 					await NavigateTo(new Uri("http://www.myapp.com/NavigationPage/HomePage", UriKind.Absolute));
 
 					// NAVEGAÇÃO ABSOLUTA POR STRING -- MAGIC STRINGS --
 					//await NavigateTo("app:///NavigationPage/HomePage");
+				}
+				else if (Username == "user" && Password == "user") // ACESSO SEM USUÁRIO ADMIN NÃO FAÇO O CARREGAMENTO
+				{
+					// NAVEGAÇÃO ABSOLUTA POR URI
+					await NavigateTo(new Uri("http://www.myapp.com/NavigationPage/HomePage", UriKind.Absolute));
+
+					// NAVEGAÇÃO ABSOLUTA POR STRING -- MAGIC STRINGS --
+					//await NavigateTo("app:///NavigationPage/HomePage");	
 				}
 				else if (Username != "admin" || (Username == "admin" && Password != "admin"))
 				{
@@ -112,6 +144,15 @@ namespace PrismApp.Shared.ViewModels
 			{
 				await _pageDialogService.DisplayAlertAsync("Erro", ex.Message, "OK");
 			}
+		}
+
+		/// <summary>
+		/// Loads the permission module.
+		/// </summary>
+		void LoadPermissionModule()
+		{
+			_moduleManager.LoadModule("PermissionModule");
+			SavePropertiesAsync();
 		}
 
 		/// <summary>
@@ -145,6 +186,12 @@ namespace PrismApp.Shared.ViewModels
 			{
 				await _pageDialogService.DisplayAlertAsync("Erro", ex.Message, "OK");
 			}
+		}
+
+		public async Task SavePropertiesAsync()
+		{
+			Properties.Add("IsSampleModuleRegistered", true);
+			Properties.Add("AuthenticatedUser", Username);
 		}
 	}
 }

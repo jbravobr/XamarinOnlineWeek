@@ -156,11 +156,17 @@
     <BundleResource Include="Resources\about.png" />
     <BundleResource Include="Resources\MankSans-Medium.ttf" />
     <BundleResource Include="Resources\bg01blurred.jpg" />
+    <BundleResource Include="Resources\unknow.png" />
+    <BundleResource Include="Resources\exit.png" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\PrismApp.Shared\PrismApp.Shared.csproj">
       <Project>{D4887A8E-B1B5-4B05-AED9-CC209B2F42E3}</Project>
       <Name>PrismApp.Shared</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\PrismApp.PermissionModule\PrismApp.PermissionModule.csproj">
+      <Project>{83209A11-749E-4538-8ED6-238BE5B8C323}</Project>
+      <Name>PrismApp.PermissionModule</Name>
     </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildExtensionsPath)\Xamarin\iOS\Xamarin.iOS.CSharp.targets" />

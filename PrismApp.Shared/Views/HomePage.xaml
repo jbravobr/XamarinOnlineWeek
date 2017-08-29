@@ -5,20 +5,29 @@
     xmlns:effects="clr-namespace:PrismApp.Shared"
     xmlns:controls="clr-namespace:ImageCircle.Forms.Plugin.Abstractions;assembly=ImageCircle.Forms.Plugin.Abstractions"
     xmlns:b="clr-namespace:Prism.Behaviors;assembly=Prism.Forms"
-    Title="Agenda"
+    Title="Xamarin Online Week"
     x:Class="PrismApp.Shared.Views.HomePage">
+    <ContentPage.ToolbarItems>
+        <ToolbarItem
+            Text="Sair"
+            Icon="exit.png"
+            Command="{Binding ExitCmd}"
+            Order="Primary" />
+    </ContentPage.ToolbarItems>
     <ContentPage.Content>
         <Grid
             VerticalOptions="FillAndExpand"
             HorizontalOptions="FillAndExpand"
-            Padding="20">
+            Padding="20,10,0,-20">
             <Grid.RowDefinitions>
                 <RowDefinition
-                    Height="1*" />
+                    Height="59" />
                 <RowDefinition
-                    Height="1*" />
+                    Height="25" />
                 <RowDefinition
-                    Height="8*" />
+                    Height="*" />
+                <RowDefinition
+                    Height="Auto" />
             </Grid.RowDefinitions>
             <Label
                 Grid.Row="0"
@@ -108,6 +117,24 @@
                     </DataTemplate>
                 </ListView.ItemTemplate>
             </ListView>
+            <Button
+                Grid.Row="3"
+                Text="NOVA"
+                HorizontalOptions="CenterAndExpand"
+                WidthRequest="260"
+                Style="{StaticResource btnInactiveLogon}"
+                Command="{Binding AddCmd}">
+                <Button.Font.Triggers>
+                    <Trigger
+                        TargetType="Button"
+                        Property="IsEnabled"
+                        Value="True">
+                        <Setter
+                            Property="Style"
+                            Value="{StaticResource btnActiveLogon}" />
+                    </Trigger>
+                </Button.Font.Triggers>
+            </Button>
         </Grid>
     </ContentPage.Content>
 </ContentPage>
